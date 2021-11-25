@@ -1,5 +1,15 @@
+<Directory "/var/www/htdocs/*">  # 해당 Directory는 웹서버 구조에 맞게 경로 설정 수정
+# 악성 봇 차단으로만 해도 트래픽이 사용량이 낮아지므로 AWS나 GCP 같은 Cloud 형태의 서버는 요금이 낮아질 수 있음
+
 Options All -Indexes
 RewriteEngine on
+
+#악성봇
+SetEnvIfNoCase User-Agent "SemrushBot" bad_bot
+SetEnvIfNoCase User-Agent "SemrushBot-SA" bad_bot
+SetEnvIfNoCase User-Agent "DomainCrawler" bad_bot
+SetEnvIfNoCase User-Agent "MegaIndex.ru" bad_bot
+SetEnvIfNoCase User-Agent "AlphaBot" bad_bot
 
 # Block Bad Bots & Scrapers
 SetEnvIfNoCase User-Agent "Aboundex" bad_bot
